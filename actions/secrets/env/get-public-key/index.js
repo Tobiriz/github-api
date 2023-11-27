@@ -1,7 +1,7 @@
 import core from '@actions/core';
 import github from '@actions/github';
 import { Octokit } from 'octokit';
-import { debugJsonKeysAndValues, logJsonKeysAndValues } from '../../../../func/log';
+import { debugJsonKeysAndValues, debug } from '../../../../func/log';
 
 
 async function run() {
@@ -9,7 +9,6 @@ async function run() {
     const token = core.getInput('token');
     const repo = core.getInput('repositoryId');
     const env = core.getInput('environmentName');
-    console.log("Using URL: " + api + "/repositories/" + repo + "/environments/" + env + "/secrets/public-key");
     try {
         const octokit = new Octokit({
             baseUrl: api,
