@@ -1,5 +1,5 @@
-import { core } from '@actions/core';
-import { github } from '@actions/github';
+import core from '@actions/core';
+import github from '@actions/github';
 import { Octokit } from 'octokit';
 
 async function run() {
