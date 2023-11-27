@@ -21,8 +21,10 @@ async function run() {
             }
         });
         console.log("Response: " + JSON.stringify(response));
-        core.setOutput("key", response.key);
-        core.setOutput("keyId", response.key_id);
+        console.log("Key: " + response.data.key)
+        console.log("ID: " + response.data.key_id)
+        core.setOutput("key", response.data.key);
+        core.setOutput("keyId", response.data.key_id);
     } catch (error) {
         core.setFailed(error.message);
     }
