@@ -1,6 +1,8 @@
 import core from '@actions/core';
 import github from '@actions/github';
 import { Octokit } from 'octokit';
+import { debugJsonKeysAndValues, logJsonKeysAndValues } from '../../../../func/log';
+
 
 async function run() {
     const api = core.getInput('githubApi');
@@ -20,9 +22,11 @@ async function run() {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         });
-        console.log("Response: " + JSON.stringify(response));
-        console.log("Key: " + response.data.key)
-        console.log("ID: " + response.data.key_id)
+        if (core.isDebug()) {
+            debug("Status: " + response.status);
+            debug("URL: " + response.url);
+            debugJsonKeysAndValues(response.headers);
+        }
         core.setOutput("key", response.data.key);
         core.setOutput("keyId", response.data.key_id);
     } catch (error) {
